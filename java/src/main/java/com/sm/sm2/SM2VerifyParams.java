@@ -5,7 +5,7 @@ import com.sm.SMUtils;
 import java.util.Arrays;
 
 /**
- * SM2签名验签参数封装
+ *
  *
  * @author William Sun
  */
@@ -19,10 +19,7 @@ public class SM2VerifyParams {
     public SM2VerifyParams() {
     }
 
-    /*
-    * 不对外开放的 构造器
-    * publicKey为String类型Base64编码的字符串
-    * */
+
     SM2VerifyParams(String userId, String publicKey, String sourceData, SM2SignResult sm2SignResult) {
         this.userId = userId.getBytes();
         this.publicKey = SMUtils.decodeBase64(publicKey);
@@ -30,9 +27,6 @@ public class SM2VerifyParams {
         this.sm2SignResult = sm2SignResult;
     }
 
-    /*
-    * 不对外开放的 构造器
-    * */
     SM2VerifyParams(byte[] userId, byte[] publicKey, byte[] sourceData, SM2SignResult sm2SignResult) {
         this.userId = userId;
         this.publicKey = publicKey;
