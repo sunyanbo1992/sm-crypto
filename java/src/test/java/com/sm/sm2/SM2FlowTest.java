@@ -17,17 +17,9 @@ import static org.testng.Assert.assertTrue;
 public class SM2FlowTest {
 
 
-    /*
-    * 测试 SM2整个流程 Base64方式,包括
-    * 生成keypair
-    * 加密, 解密
-    * 签名, 验签
-    *
-    * */
     @Test
     public void base64Test() throws Exception {
 
-        //生成keypair
         final SM2KeyPair keyPair = SM2KeyPairGenerator.generateKeyPair(true);
         assertNotNull(keyPair);
 
@@ -37,12 +29,10 @@ public class SM2FlowTest {
 //        System.out.println("publicKey: " + publicKey);
 
         String data = "Just Test " + UUID.randomUUID().toString();
-        //加密
         final String encrypt = SM2Encrypt.encryptUseBase64(publicKey, data, true);
         assertNotNull(encrypt);
 //        System.out.println(data + " -> " + encrypt);
 
-        //解密
         final SM2DecryptResult decrypt = SM2Decrypt.decryptUseBase64(privateKey, encrypt, true);
         assertNotNull(decrypt);
         assertTrue(decrypt.getC3Result());
@@ -51,7 +41,6 @@ public class SM2FlowTest {
         assertEquals(data, new String(plainText));
 
 
-        // 签名
         final String userId = "userId Test";
         final String sourceData = data;
 
@@ -61,7 +50,6 @@ public class SM2FlowTest {
         assertNotNull(base64);
 
 
-        //验签
         SM2VerifyParams params = new SM2VerifyParams(userId, publicKey, sourceData, base64);
         final boolean verify = SM2Verify.verify(params, true);
         assertTrue(verify);
@@ -69,17 +57,9 @@ public class SM2FlowTest {
     }
 
 
-    /*
-    * 测试 SM2整个流程 Hex方式,包括
-    * 生成keypair
-    * 加密, 解密
-    * 签名,验签
-    *
-    * */
     @Test(enabled = true)
     public void hexTest() throws Exception {
 
-        //生成keypair
         final SM2KeyPair keyPair = SM2KeyPairGenerator.generateKeyPair();
         assertNotNull(keyPair);
 
@@ -89,12 +69,10 @@ public class SM2FlowTest {
 //        System.out.println("publicKey: " + publicKey);
 
         String data = "Just Test " + UUID.randomUUID().toString();
-        //加密
         final String encrypt = SM2Encrypt.encryptUseHex(publicKey, data);
         assertNotNull(encrypt);
 //        System.out.println(data + " -> " + encrypt);
 
-        //解密
         final SM2DecryptResult decrypt = SM2Decrypt.decryptUseHex(privateKey, encrypt);
         assertNotNull(decrypt);
         assertTrue(decrypt.getC3Result());
@@ -103,7 +81,6 @@ public class SM2FlowTest {
         assertEquals(data, new String(plainText));
 
 
-        // 签名
         final byte[] userId = "userId Test".getBytes();
         final byte[] sourceData = data.getBytes();
 
@@ -111,9 +88,6 @@ public class SM2FlowTest {
         assertNotNull(sm2SignResult);
         final String base64 = sm2SignResult.resultToBase64();
         assertNotNull(base64);
-
-
-        //验签
 
         SM2VerifyParams params = new SM2VerifyParams(userId, SMUtils.hexStringToBytes(publicKey), sourceData, base64);
         final boolean verify = SM2Verify.verify(params);
