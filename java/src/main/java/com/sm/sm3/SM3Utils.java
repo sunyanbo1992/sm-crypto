@@ -1,7 +1,7 @@
 package com.sm.sm3;
 
 /**
- * SM3算法实现需要的工具方法
+ * SM3
  * @author William Sun
  */
 public abstract class SM3Utils {
@@ -26,7 +26,7 @@ public abstract class SM3Utils {
         return (X & Y) | (~X & Z);
     }
 
-    //数组翻转
+    
     public static byte[] back(byte[] in) {
         byte[] out = new byte[in.length];
         for (int i = 0; i < out.length; i++) {
@@ -37,10 +37,7 @@ public abstract class SM3Utils {
     }
 
     /**
-     * 循环左移
-     * @param n 需要左移的数据
-     * @param bitLen 移动位数
-     * @return 移动后的结果
+     *
      */
     public static int bitCycleLeft(int n, int bitLen) {
         bitLen %= 32;
@@ -57,7 +54,7 @@ public abstract class SM3Utils {
 
         return bigEndianByteToInt(tmp);
     }
-    //最低八位循环左移
+    
     public static byte[] bitSmall8CycleLeft(byte[] in, int len) {
         byte[] tmp = new byte[in.length];
         int t1, t2, t3;
@@ -71,7 +68,7 @@ public abstract class SM3Utils {
         return tmp;
     }
 
-    //循环左移的
+   
     public static byte[] byteCycleLeft(byte[] in, int byteLen) {
         byte[] tmp = new byte[in.length];
         System.arraycopy(in, byteLen, tmp, 0, in.length - byteLen);
@@ -79,17 +76,16 @@ public abstract class SM3Utils {
         return tmp;
     }
 
-    //高位int转化为byte数组
+ 
     public static byte[] bigEndianIntToByte(int num) {
         return back(intToBytes(num));
     }
 
-    //高位ibyte数组转化为int
+  
     public static int bigEndianByteToInt(byte[] bytes) {
         return byteToInt(back(bytes));
     }
 
-    //long型转化为byte[]
     public static byte[] long2bytes(long l) {
         byte[] bytes = new byte[8];
         for (int i = 0; i < 8; i++) {
@@ -99,7 +95,6 @@ public abstract class SM3Utils {
     }
 
 
-    //byte数组转化为int数组
     public static int[] byteArrayConvertIntArray(byte[] arr) {
         int[] out = new int[arr.length / 4];
         byte[] tmp = new byte[4];
@@ -109,7 +104,6 @@ public abstract class SM3Utils {
         }
         return out;
     }
-    //int数组转化为byte数组
     public static byte[] intArrayConvertByteArray(int[] arr) {
         byte[] out = new byte[arr.length * 4];
         byte[] tmp;
@@ -120,11 +114,7 @@ public abstract class SM3Utils {
         return out;
     }
 
-    /**
-     * int转化为byte数组
-     * @param num 一个整型数据
-     * @return 4个字节的自己数组
-     */
+ 
     public static byte[] intToBytes(int num) {
         byte[] bytes = new byte[4];
         bytes[0] = (byte) (0xff & (num));
@@ -134,10 +124,6 @@ public abstract class SM3Utils {
         return bytes;
     }
 
-    /**
-     * @param bytes 4个字节的字节数组
-     * @return 一个整型数据
-     */
     public static int byteToInt(byte[] bytes) {
         int num = 0;
         int temp;
