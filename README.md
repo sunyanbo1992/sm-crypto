@@ -17,3 +17,12 @@ The SM3 hash algorithm is suitable for the generation and verification of digita
 SM4 algorithm: 
 SM4 block cipher algorithm is a group symmetric cipher algorithm to realize the encryption/decryption operation of data to ensure the confidentiality of data and information. 
 The basic requirement for a symmetric cipher algorithm to guarantee the safety is the enough key length SM4 algorithm and AES algorithm with the same key length packet length is 128 bits, and so on security is higher than 3 des algorithm. The SM4 algorithm and the AES algorithm have the same key-length packet length of 128 bits, and therefore are higher in security than the 3DES algorithm.
+
+# Develop Language
+JDK - 1.8
+
+# Reference
+http://www.oscca.gov.cn/News/201012/News_1197.htm
+
+# Dependency
+bcprov-jdk15 150
