@@ -21,8 +21,8 @@ The basic requirement for a symmetric cipher algorithm to guarantee the safety i
 # Develop Language
 JDK - 1.8
 
-# Reference
-http://www.oscca.gov.cn/News/201012/News_1197.htm
-
 # Dependency
 bcprov-jdk15 150
+
+# Reference
+http://www.oscca.gov.cn/News/201012/News_1197.htm
