@@ -2,22 +2,14 @@ package com.sm.sm4;
 
 import java.util.Arrays;
 
-/**
- * SM4基本数据
- *
- * @author William Sun
- */
 public class SM4 {
 
     private static final int ENCRYPT = 1;
 
     private static final int DECRYPT = 0;
-    //轮数
     private static final int ROUND = 32;
-    //分组长度
     private static final int BLOCK = 16;
 
-    //S盒
     private static final byte[] SBOX = {(byte) 0xd6, (byte) 0x90, (byte) 0xe9, (byte) 0xfe,
             (byte) 0xcc, (byte) 0xe1, 0x3d, (byte) 0xb7, 0x16, (byte) 0xb6,
             0x14, (byte) 0xc2, 0x28, (byte) 0xfb, 0x2c, 0x05, 0x2b, 0x67,
@@ -58,7 +50,6 @@ public class SM4 {
             0x7d, (byte) 0xec, 0x3a, (byte) 0xdc, 0x4d, 0x20, 0x79,
             (byte) 0xee, 0x5f, 0x3e, (byte) 0xd7, (byte) 0xcb, 0x39, 0x48};
 
-    //固定参数 CK
     private static final int[] CK = {0x00070e15, 0x1c232a31, 0x383f464d, 0x545b6269,
             0x70777e85, 0x8c939aa1, 0xa8afb6bd, 0xc4cbd2d9, 0xe0e7eef5,
             0xfc030a11, 0x181f262d, 0x343b4249, 0x50575e65, 0x6c737a81,
@@ -67,19 +58,16 @@ public class SM4 {
             0xa0a7aeb5, 0xbcc3cad1, 0xd8dfe6ed, 0xf4fb0209, 0x10171e25,
             0x2c333a41, 0x484f565d, 0x646b7279};
 
-    //行移位
     private int Rotl(int x, int y) {
         return x << y | x >>> (32 - y);
     }
 
-    //字节替换
     private int ByteSub(int A) {
         return (SBOX[A >>> 24 & 0xFF] & 0xFF) << 24
                 | (SBOX[A >>> 16 & 0xFF] & 0xFF) << 16
                 | (SBOX[A >>> 8 & 0xFF] & 0xFF) << 8 | (SBOX[A & 0xFF] & 0xFF);
     }
 
-    //线性变换L
     private int L1(int B) {
         return B ^ Rotl(B, 2) ^ Rotl(B, 10) ^ Rotl(B, 18) ^ Rotl(B, 24);
     }
@@ -88,13 +76,6 @@ public class SM4 {
         return B ^ Rotl(B, 13) ^ Rotl(B, 23);
     }
 
-    /**
-     * SM4加密
-     *
-     * @param Input  明文
-     * @param Output 密文
-     * @param rk     轮密钥
-     */
     void SM4Crypt(byte[] Input, byte[] Output, int[] rk) {
         int r, mid;
         int[] x = new int[4];
@@ -132,13 +113,6 @@ public class SM4 {
         }
     }
 
-    /**
-     * 密钥扩展
-     *
-     * @param Key       密钥
-     * @param rk        轮密钥
-     * @param CryptFlag 加密/解密
-     */
     private void SM4KeyExt(byte[] Key, int[] rk, int CryptFlag) {
         int r, mid;
         int[] x = new int[4];
@@ -181,15 +155,6 @@ public class SM4 {
         }
     }
 
-    /**
-     * SM4加密实现
-     *
-     * @param in        明文
-     * @param inLen     明文长度
-     * @param key       密钥
-     * @param out       输出
-     * @param CryptFlag 模式（加密/解密）
-     */
     public void sm4(byte[] in, int inLen, byte[] key, byte[] out, int CryptFlag) {
         int point = 0;
         int[] round_key = new int[ROUND];
