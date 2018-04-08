@@ -11,27 +11,28 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 /**
- * SM2加密器，求解c1,c2,c3值的具体实现，包括KDF函数，调用SM3摘要算法等；
+   SM2 encryptor. It is getting c1, c2, c3 values including KDF function and usage of SM3 algorithm.
+ * 
  *
  * @author William Sun
  */
 public class SM2Cipher {
 
-    //存放（x2,y2）
+    //store（x2,y2）
     private ECPoint p2;
-    //随机数k
+    //random number k
     private BigInteger k;
-    //密钥派生函数生成的结果
+   
     private byte[] t;
 
     public SM2Cipher() {
     }
 
     /**
-     * 获取C1值
+     * get C1 value
      *
-     * @param sm2 SM2对象
-     * @return C1值
+     * @param sm2 SM2
+     * @return C1
      */
     public byte[] getC1(SM2 sm2) {
 
@@ -45,11 +46,11 @@ public class SM2Cipher {
     }
 
     /**
-     * 获取C2值
+     * get C2 vaue
      *
-     * @param plainText 明文（byte[]形式）
-     * @param publicKey 公钥对象
-     * @return C2值
+     * @param plainText （in byte[]）
+     * @param publicKey
+     * @return C2
      * @throws IOException
      */
     public byte[] getC2(byte[] plainText, ECPoint publicKey) throws IOException {
@@ -80,10 +81,10 @@ public class SM2Cipher {
     }
 
     /**
-     * 获取C3值
+     * get C3 value
      *
-     * @param plainText 明文（byte[]形式）
-     * @return C3值
+     * @param plainText（byte[]）
+     * @return C3
      * @throws IOException
      */
     public byte[] getC3(byte[] plainText) throws IOException {
@@ -100,12 +101,12 @@ public class SM2Cipher {
     }
 
     /**
-     * 解密C2
+     * C2
      *
-     * @param privateKey 私钥
-     * @param c1         点C1（C1值还原得来）
-     * @param c2         C2值
-     * @return 明文
+     * @param privateKey
+     * @param c1
+     * @param c2
+     * @return plaintext
      * @throws IOException
      */
     public byte[] decryptC2(BigInteger privateKey, ECPoint c1, byte[] c2) throws IOException {
@@ -125,11 +126,11 @@ public class SM2Cipher {
     }
 
     /**
-     * 验证生成的C3与原始C3是否一致
+     * validate C3 with original C3
      *
-     * @param plainText  由C2解密出的明文
-     * @param originalC3 原始的C3
-     * @return 验证结果
+     * @param plainText
+     * @param originalC3
+     * @return validation results
      * @throws IOException
      */
     public boolean verifyC3(byte[] plainText, byte[] originalC3) throws IOException {
@@ -145,16 +146,7 @@ public class SM2Cipher {
         return SMUtils.byteToHex(originalC3).equals(SMUtils.byteToHex(generateC3));
     }
 
-    /**
-     * 密钥派生函数
-     * <p>
-     * 函数名 KDF 是白皮书上定义的
-     *
-     * @param Z    (x2||y2)
-     * @param kLen 明文长度
-     * @return t值
-     * @throws IOException
-     */
+   
     private byte[] KDF(byte[] Z, int kLen) throws IOException {
 
         int ct = 1;
