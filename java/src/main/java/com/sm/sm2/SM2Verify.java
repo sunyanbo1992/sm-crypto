@@ -15,26 +15,11 @@ import java.math.BigInteger;
 public class SM2Verify {
 
 
-    /**
-     * 签名验签接口，初始化各种参数
-     * 使用测试参数
-     *
-     * @param sm2VerifyParams 验签需要的数据
-     * @return 验签结果
-     * @throws IOException
-     */
     public static boolean verify(SM2VerifyParams sm2VerifyParams) throws IOException {
         return verify(sm2VerifyParams, false);
     }
 
-    /**
-     * 签名验签接口，初始化各种参数
-     *
-     * @param sm2VerifyParams 验签需要的数据
-     * @param onlineEnv       SM2是否为正式参数
-     * @return 验签结果
-     * @throws IOException
-     */
+  
     public static boolean verify(SM2VerifyParams sm2VerifyParams, boolean onlineEnv) throws IOException {
 
         byte[] userId = sm2VerifyParams.getUserId();
@@ -50,16 +35,6 @@ public class SM2Verify {
         byte[] e = SM3.hash(M);
         return doVerify(e, pubKey, sm2SignResult, sm2);
     }
-
-    /**
-     * 签名验证具体实现
-     *
-     * @param md            密码杂凑函数作用于消息M ′的输出值。
-     * @param publicKey     公钥
-     * @param sm2SignResult 签名结果
-     * @param sm2           SM2对象
-     * @return 签名结果
-     */
     private static boolean doVerify(byte md[], ECPoint publicKey, SM2SignResult sm2SignResult, SM2 sm2) {
 
         BigInteger e = new BigInteger(1, md);
