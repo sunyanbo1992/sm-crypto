@@ -12,13 +12,13 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 
 /**
- * SM2算法的一些基本参数，以及调用ECC类库所需的参数
+ * 
  *
  * @author William Sun
  */
 public class SM2 {
 
-    // 白皮书测试参数
+    
     private final static String[] ECC_TEST_PARAM = {
             "8542D69E4C044F18E8B92435BF6FF7DE457283915C45517D722EDB8B08F1DFC3",
             "787968B4FA32C3FD2417842E73BBFEFF2F3C848B6831D7E0EC65228B3937E498",
@@ -28,7 +28,7 @@ public class SM2 {
             "0680512BCBB42C07D47349D2153B70C4E5D7FDFCBFA36EA1A85841B9E46E09A2"
     };
 
-    //SM2国家推荐正式参数
+    //
     private final static String[] ECC_ONLINE_PARAM = {
             "FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFF",
             "FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFC",
@@ -38,7 +38,7 @@ public class SM2 {
             "BC3736A2F4F6779C59BDCEE36B692153D0A9877CC62A474002DF32E52139F0A0"
     };
 
-    //从上述参数中提取的值，命名与白皮书命名一致
+    
     private BigInteger eccP;
     private BigInteger eccA;
     private BigInteger eccB;
@@ -48,14 +48,13 @@ public class SM2 {
     private ECDomainParameters eccBcSpec;
     private ECFieldElement eccGxFieldElement;
     private ECFieldElement eccGyFieldElement;
-    //以下值分别为：基点g,椭圆曲线，密钥对生成器
+    
     public ECCurve eccCurve;
     public ECPoint eccPointG;
     public ECKeyPairGenerator eccKeyPairGenerator;
 
 
     /**
-     * 默认使用测试参数 构造器
      */
     public SM2() {
         this(false);
@@ -63,9 +62,7 @@ public class SM2 {
 
 
     /**
-     * 是否使用 正式参数(onlineEnv) 构造SM2对象
-     *
-     * @param onlineEnv True 使用正式参数, false 使用测试参数
+     * 
      */
     public SM2(boolean onlineEnv) {
         if (onlineEnv) {
