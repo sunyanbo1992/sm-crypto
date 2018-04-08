@@ -1,0 +1,4 @@
+1.在命令行cd到该项目pox.xml文件所在目录；
+2.执行命令：mvn clean package -Psm2
+sm2为想要打jar包的profile，目前有sm2和sm4两个profile，可依据情况添加。
+3.在target目录下获取jar包；

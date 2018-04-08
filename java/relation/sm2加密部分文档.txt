@@ -1,0 +1,18 @@
+1.公钥加密
+  调用SM2Encrypt类的encryptUseBase64(String publicKeyBase64, String plainText)接口实现公钥加密，得到的密文为String类型的Base64编码字符串。
+
+1.1 入参说明
+参数名称	数据类型	说明
+publicKeyBase64	String 		公钥；
+plainText	String 		明文；
+onlineEnv	boolean		为true则使用白皮书生产参数，false使用白皮书测试参数；
+1.2返回值
+  String类型的Base64编码的字符串密文；
+1.3示例代码
+String message = "encryption standard";
+//公钥，Base64编码的字符串
+String publicKey = "BMx6kqJ0+YL4O91LRgnXQ7DA1EWay3nGvD92pFajAmftTmUKUjkn72RppgAOMZTsI/QliOudQ7YQ70ZaEhgLAZc=";
+//加密获得密文
+String cipherText = SM2Encrypt.encryptUseBase64(publicKey, message, true);
+//输出结果
+cipherText：BPsGPZhhbi7lWJvJvAdLHnO8WcHSH9v/EXt0cd9rVz4rnNtEMiHOkbhFPPNQqp9u//WYbaYSwQLnrqGAvELTQ5X6ZS+hNJabaxNez6Yq8xQMlMAY0zBSafG1meLGx/oL2zXVvTDsYr7HQbKXl1c17iRZaQE=
