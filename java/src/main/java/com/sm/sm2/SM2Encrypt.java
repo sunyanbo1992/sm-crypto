@@ -6,7 +6,7 @@ import org.bouncycastle.math.ec.ECPoint;
 import java.io.IOException;
 
 /**
- * SM2加密
+ * 
  *
  * @author William Sun
  */
@@ -17,12 +17,12 @@ public abstract class SM2Encrypt {
     }
 
     /**
-     * 数据加密 HEX, 16进制
+     * HEX
      * 默认测试参数
      *
-     * @param publicKey 公钥,  HEX编码字符串
-     * @param plainText 明文, 需要加密的数据
-     * @return SM2加密后的密文(HEX编码)
+     * @param publicKey 
+     * @param plainText
+     * @return SM2 plaintext
      * @throws IOException
      */
     public static String encryptUseHex(String publicKey, String plainText) throws IOException {
@@ -31,12 +31,12 @@ public abstract class SM2Encrypt {
 
 
     /**
-     * 数据加密 HEX, 16进制
+     * 数据加密 HEX
      * 默认测试参数
      *
-     * @param publicKey 公钥,  HEX编码字符串
-     * @param plainText 明文, 需要加密的数据
-     * @return SM2加密后的密文(HEX编码)
+     * @param publicKey
+     * @param plainText
+     * @return SM2
      * @throws IOException
      */
     public static String encryptUseHex(String publicKey, String plainText, boolean onlineEnv) throws IOException {
@@ -45,12 +45,12 @@ public abstract class SM2Encrypt {
 
 
     /**
-     * 数据加密, Base64 public key
+     * public key
      * 默认测试参数
      *
-     * @param publicKeyBase64 公钥  Base64
-     * @param plainText       明文, 字符串格式
-     * @return SM2加密后的密文
+     * publicKeyBase64
+     * param plainText
+     * @return SM2
      * @throws IOException
      */
     public static String encryptUseBase64(String publicKeyBase64, String plainText) throws IOException {
@@ -59,12 +59,12 @@ public abstract class SM2Encrypt {
 
 
     /**
-     * 数据加密, Base64 public key
+     * Base64 public key
      *
-     * @param publicKeyBase64 公钥  Base64
-     * @param plainText       明文, 需要加密的数据
-     * @param onlineEnv       是否为正式参数, true正式, false测试
-     * @return SM2加密后的密文 base64
+     * @param publicKeyBase64 Base64
+     * @param plainText      
+     * @param onlineEnv
+     * @return SM2 base64
      * @throws IOException
      */
     public static String encryptUseBase64(String publicKeyBase64, String plainText, boolean onlineEnv) throws IOException {
@@ -75,12 +75,12 @@ public abstract class SM2Encrypt {
 
 
     /**
-     * 数据加密 HEX, 16进制
+     * HEX
      *
-     * @param publicKey 公钥
-     * @param plainText 明文, 需要加密的数据
-     * @param onlineEnv 是否为正式参数, true正式, false测试
-     * @return SM2加密后的密文（HEX编码字符串）
+     * @param publicKey
+     * @param plainText
+     * @param onlineEnv
+     * @return SM2 HEX编码字符串
      * @throws IOException
      */
     public static String encrypt(byte[] publicKey, byte[] plainText, boolean onlineEnv) throws IOException {
