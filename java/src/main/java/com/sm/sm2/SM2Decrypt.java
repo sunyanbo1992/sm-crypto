@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 /**
- * SM2解密
+ * SM2
  *
- * @author William Sun
+ * 
  */
 public abstract class SM2Decrypt {
 
@@ -19,12 +19,12 @@ public abstract class SM2Decrypt {
 
 
     /**
-     * 数据解密, Base64
-     * 默认测试参数
+     * Base64
+     * 
      *
-     * @param privateKeyBase64 私钥 base64
-     * @param cipherText      密文(BASE64字符串)
-     * @return 解密结果
+     * @param privateKeyBase64 base64
+     * @param cipherText     
+     * @return
      * @throws IOException
      */
     public static SM2DecryptResult decryptUseBase64(String privateKeyBase64, String cipherText) throws IOException {
@@ -34,10 +34,10 @@ public abstract class SM2Decrypt {
     /**
      * 数据解密, Base64
      *
-     * @param privateKeyBase64 私钥 base64
-     * @param cipherText       密文(BASE64字符串)
-     * @param onlineEnv        是否为正式参数, true正式, false测试
-     * @return 解密结果
+     * @param privateKeyBase64 base64
+     * @param cipherText       (BASE64字符串)
+     * @param onlineEnv        
+     * @return plaintext
      * @throws IOException
      */
     public static SM2DecryptResult decryptUseBase64(String privateKeyBase64, String cipherText, boolean onlineEnv) throws IOException {
@@ -46,13 +46,11 @@ public abstract class SM2Decrypt {
         return decrypt(privateKey, SMUtils.byteToHex(decrypt), onlineEnv);
     }
 
-    /**
-     * 数据解密, HEX
-     * 默认测试参数
+    /*
      *
-     * @param privateKey  私钥(String型HEX编码)
-     * @param cipherText 密文(String型HEX编码)
-     * @return 解密结果
+     * @param privateKey  String hex
+     * @param cipherText String hex
+     * @return
      * @throws IOException
      */
     public static SM2DecryptResult decryptUseHex(String privateKey, String cipherText) throws IOException {
@@ -60,12 +58,10 @@ public abstract class SM2Decrypt {
     }
 
     /**
-     * 数据解密, HEX
-     * 默认测试参数
-     *
-     * @param privateKey  私钥(HEX编码)
-     * @param cipherText 密文(HEX编码)
-     * @return 解密结果
+     
+     * @param privateKey HEX
+     * @param cipherText HEX
+     * @return 
      * @throws IOException
      */
     public static SM2DecryptResult decryptUseHex(String privateKey, String cipherText, boolean onlineEnv) throws IOException {
@@ -74,12 +70,12 @@ public abstract class SM2Decrypt {
 
 
     /**
-     * 数据解密, HEX
      *
-     * @param privateKey  私钥
-     * @param cipherTextHex 密文(HEX编码字符串)
-     * @param onlineEnv   是否为正式参数, true正式, false测试
-     * @return 解密结果
+     *
+     * @param privateKey 
+     * @param cipherTextHex HEX
+     * @param onlineEnv
+     * @return
      * @throws IOException
      */
     public static SM2DecryptResult decrypt(byte[] privateKey, String cipherTextHex, boolean onlineEnv) throws IOException {
