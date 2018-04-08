@@ -14,14 +14,12 @@ public class SM2KeyPairGeneratorTest {
     @Test
     public void generateKeyPairTest() {
 
-        //case1：生成HEX编码的密钥对
         SM2KeyPair keyPair1 = SM2KeyPairGenerator.generateKeyPair(true);
         final String publicKey1 = keyPair1.getHexPublicKey();
         assertNotNull(publicKey1);
         final String privateKey1 = keyPair1.getHexPrivateKey();
         assertNotNull(privateKey1);
 
-        //case2：生成Base64编码的密钥对
         SM2KeyPair keyPair2 = SM2KeyPairGenerator.generateKeyPair(true);
         final String publicKey2 = keyPair2.getBase64PublicKey();
         assertNotNull(publicKey2);
