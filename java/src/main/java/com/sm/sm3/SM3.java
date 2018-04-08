@@ -4,12 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-/**
- * SM3算法所用到的常量，函数
- * @author William Sun
- */
 public class SM3 {
-    //初始值，用于确定压缩函数寄存器的初态
     public static final byte[] iv = { 0x73, (byte) 0x80, 0x16, 0x6f, 0x49,
             0x14, (byte) 0xb2, (byte) 0xb9, 0x17, 0x24, 0x42, (byte) 0xd7,
             (byte) 0xda, (byte) 0x8a, 0x06, 0x00, (byte) 0xa9, 0x6f, 0x30,
@@ -17,11 +12,9 @@ public class SM3 {
             (byte) 0x8d, (byte) 0xee, 0x4d, (byte) 0xb0, (byte) 0xfb, 0x0e,
             0x4e };
 
-    //填充时需要的数字
     private static final byte[] FirstPadding = {(byte) 0x80};
-    //填充时需要的数字
     private static final byte[] ZeroPadding = {(byte) 0x00};
-    //常量
+    
     public static int[] Tj = new int[64];
 
     static {
@@ -34,7 +27,6 @@ public class SM3 {
         }
     }
 
-    //布尔函数
     private static int FFj(int X, int Y, int Z, int j) {
         if (j >= 0 && j <= 15) {
             return SM3Utils.FF1j(X, Y, Z);
@@ -44,7 +36,7 @@ public class SM3 {
         }
     }
 
-    //布尔函数
+ 
     private static int GGj(int X, int Y, int Z, int j) {
         if (j >= 0 && j <= 15) {
             return SM3Utils.GG1j(X, Y, Z);
@@ -54,20 +46,18 @@ public class SM3 {
         }
     }
 
-    //置换函数
     private static int P0(int X) {
 
         int y = SM3Utils.bitCycleLeft(X, 9);
         int z = SM3Utils.bitCycleLeft(X, 17);
         return X ^ y ^ z;
     }
-    //置换函数
+
     private static int P1(int X) {
 
         return X ^ SM3Utils.bitCycleLeft(X, 15) ^ SM3Utils.bitCycleLeft(X, 23);
     }
 
-    //填充
     public static byte[] padding(byte[] source) throws IOException {
 
         if (source.length >= 0x2000000000000000l) {
@@ -92,7 +82,6 @@ public class SM3 {
         return out.toByteArray();
     }
 
-    //消息扩展
     private static int[][] expand(int[] B) {
 
         int W[] = new int[68];
@@ -111,7 +100,6 @@ public class SM3 {
         return new int[][] { W, W1 };
     }
 
-    //压缩函数具体实现
     public static int[] CF(int[] V, int[] B) {
         int a, b, c, d, e, f, g, h;
         int ss1, ss2, tt1, tt2;
@@ -156,7 +144,6 @@ public class SM3 {
         return out;
     }
 
-    //压缩函数
     public static byte[] CF(byte[] V, byte[] B) {
 
         int[] v, b;
