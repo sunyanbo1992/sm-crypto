@@ -13,7 +13,6 @@ public class SM2EncryptTest {
     @Test
     public void encryptHexTest() throws Exception {
 
-        //case1: Hex格式密钥；
         String message = "encryption standard";
         String privateKey = "1649AB77A00637BD5E2EFE283FBF353534AA7F7CB89463F208DDBC2920BB0DA0";
         String publicKey = "04435B39CCA8F3B508C1488AFC67BE491A0F7BA07E581A0E4849A5CF70628A7E0A75DDBA78F15FEECB4C7895E2C1CDF5FE01DEBB2CDBADF45399CCF77BBA076A42";
@@ -30,7 +29,6 @@ public class SM2EncryptTest {
     @Test
     public void encryptBase64Test() throws Exception {
 
-        //case2: Base64格式密钥；
         String message = "encryption standard";
         SM2KeyPair keyPair = SM2KeyPairGenerator.generateKeyPair();
         String privateKey = keyPair.getBase64PrivateKey();
