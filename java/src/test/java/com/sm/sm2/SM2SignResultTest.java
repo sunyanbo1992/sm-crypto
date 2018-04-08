@@ -11,12 +11,6 @@ import static org.testng.Assert.*;
  */
 public class SM2SignResultTest {
 
-
-    /**
-     * 测试生成与 解析
-     *
-     * @throws Exception
-     */
     @Test
     public void parse() throws Exception {
 
